@@ -1,0 +1,19 @@
+{% extends 'template.html.twig' %}
+{% block title %}{{ parent() }} - {% endblock %}
+
+{% block stitre %}Détail de notre article {% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block contenu %}
+    <h2>{{ articles.getThetitle }}</h2>
+    <h3>
+        {% for categ in articles.getThesectionsthesections %}
+            <a href="{{ path("detail_section",{"id":categ.getIdthesections}) }}">{{ categ.getLetitre }}</a> |
+        {% endfor %}
+    </h3>
+    <p>{{ articles.getThetext|nl2br }}</p>
+
+{% endblock %}

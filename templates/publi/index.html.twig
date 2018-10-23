@@ -1,20 +1,27 @@
-{% extends 'base.html.twig' %}
+{% extends 'template.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %} acceuil {% endblock %}
+{% block stitre %}Détail de l'article{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block menu %} {{ parent() }}{% endblock %}
+    {% block content %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        {% if articles is empty %}
+        <h3>Il n'y pas encore d'articles</h3>
+        {% endif %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/PubliController.php'|file_link(0) }}">src/Controller/PubliController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/publi/index.html.twig'|file_link(0) }}">templates/publi/index.html.twig</a></code></li>
-    </ul>
-</div>
+        {% for item in articles %}
+        <h2>{{ item.getThetitle }}</h2>
+        <h3>
+            {% for sections in item.getThesectionsthesections %}
+                <a href="{{ path("detail_section",{"id":sections.getIdthesections}) }}">...</a> |
+            {% endfor %}
+        </h3>
+      <p>{{ item.getThetext|truncate(300,true) }} <a href="{{ path("detail_article",{'id':item.getIdlesarticles}) }}">Lire la suite</a>...</p>
+        <h4>par {{ item.getLesauteurslesauteurs.getLenomcomplet}} le {{ item.getThedate|date("d/m/Y à H \\h i \\m") }}</h4>
+        <hr>
+        {% endfor %}
+    {% endblock %}
+
 {% endblock %}

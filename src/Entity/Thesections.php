@@ -41,6 +41,7 @@ class Thesections
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Lesarticles", inversedBy="thesectionsthesections")
+     * @ORM\OrderBy({"idlesarticles" = "DESC"})
      * @ORM\JoinTable(name="thesections_has_lesarticles",
      *   joinColumns={
      *     @ORM\JoinColumn(name="thesections_idthesections", referencedColumnName="idthesections")

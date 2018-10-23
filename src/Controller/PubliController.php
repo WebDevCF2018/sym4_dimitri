@@ -63,7 +63,7 @@ class PubliController extends AbstractController
 
         $article = $section->getLesarticleslesarticles();
 
-        return $this->render('publi/un_article.html.twig',[
+        return $this->render('publi/une_section.html.twig',[
             'sections' => $sections,
             'articles' => $article ,
             'section' => $section,

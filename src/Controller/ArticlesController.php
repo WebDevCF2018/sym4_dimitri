@@ -43,8 +43,12 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/{idarticles}", name="articles_show", methods="GET")
      */
-    public function show(Lesarticles $article): Response
+    public function show(): Response
     {
+        $article = $this->getDoctrine()
+            ->getRepository(Lesarticles::class)
+            ->findall();
+
         return $this->render('articles/show.html.twig', ['article' => $article]);
     }
     /**
